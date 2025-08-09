@@ -123,7 +123,7 @@ public class Plugin: IDalamudPlugin {
 	}
 
 	private void onConditionChanged(ConditionFlag flag, bool value) {
-		if (flag is not (ConditionFlag.Mounted or ConditionFlag.Mounted2))
+		if (flag is not (ConditionFlag.Mounted or ConditionFlag.RidingPillion))
 			return;
 		ushort mount = this.mountId;
 		if (!value || mount is 0) { // disable mount bgm when unmounting to prevent volume stutters when using a disabled mount
