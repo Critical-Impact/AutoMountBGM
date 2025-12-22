@@ -35,6 +35,7 @@ public class Plugin: IDalamudPlugin {
 	[PluginService] public static IGameConfig GameConfig { get; private set; } = null!;
 	[PluginService] public static IDataManager GameData { get; private set; } = null!;
 	[PluginService] public static IPluginLog Log { get; private set; } = null!;
+	[PluginService] public static IObjectTable ObjectTable { get; private set; } = null!;
 	public static Configuration Config { get; private set; } = null!;
 
 	public static WindowSystem Windows { get; private set; } = null!;
@@ -109,7 +110,7 @@ public class Plugin: IDalamudPlugin {
 
 	private unsafe ushort mountId {
 		get {
-			IGameObject? player = ClientState.LocalPlayer;
+			IGameObject? player = ObjectTable.LocalPlayer;
 			if (player is null)
 				return 0;
 			Character* native = (Character*)player.Address;
