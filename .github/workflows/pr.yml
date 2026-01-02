@@ -6,7 +6,7 @@ on:
       - '*'
 
 env:
-  INTERNAL_NAME: AutoMountBGM
+  INTERNAL_NAME: AutoMountBgm
   PLUGIN_NAME: Auto Mount BGM
   UPDATE_NAME: ambgm
 
