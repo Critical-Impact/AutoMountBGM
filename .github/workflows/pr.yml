@@ -22,7 +22,7 @@ jobs:
       - name: Extract version and changelog
         id: changelog
         run: |
-          VERSION=$(grep -m1 -oP '(?<=## \[)[0-9]+\.[0-9]+\.[0-9]+' src/${{ env.INTERNAL_NAME }}/CHANGELOG.md)
+          VERSION=$(grep -m1 -oP '(?<=## \[)[0-9]+\.[0-9]+\.[0-9]+' ${{ env.INTERNAL_NAME }}/CHANGELOG.md)
           echo "version=1.$VERSION" >> $GITHUB_OUTPUT
           CHANGELOG=$(awk -v ver=$VERSION '/^#+ \[/ { if (p) { exit }; if ($2 == "["ver"]") { p=1; next} } p && NF' ${{ env.INTERNAL_NAME }}/CHANGELOG.md)
           echo "log<<EOF" >> $GITHUB_OUTPUT
@@ -34,7 +34,7 @@ jobs:
         uses: ffurrer2/extract-release-notes@v2
         with:
           release_notes_file: notes.md
-          changelog_file: src/${{ env.INTERNAL_NAME }}/CHANGELOG.md
+          changelog_file: ${{ env.INTERNAL_NAME }}/CHANGELOG.md
 
       - name: Create release
         env:
